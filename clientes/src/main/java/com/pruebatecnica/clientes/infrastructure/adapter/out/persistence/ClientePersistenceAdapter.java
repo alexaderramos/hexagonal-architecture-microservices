@@ -26,6 +26,11 @@ public class ClientePersistenceAdapter implements ClienteRepositoryPort {
     }
 
     @Override
+    public boolean existsByIdentificacion(String identificacion) {
+        return clienteRepository.existsByIdentificacion(identificacion);
+    }
+
+    @Override
     public Optional<Cliente> findByClienteId(String clienteId) {
         return clienteRepository.findByClienteId(clienteId)
                 .map(clienteMapper::toDomain);

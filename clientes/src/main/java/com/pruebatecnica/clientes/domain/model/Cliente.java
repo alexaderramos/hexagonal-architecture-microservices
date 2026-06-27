@@ -13,6 +13,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class Cliente extends Persona {
     private String clienteId;
+    @com.fasterxml.jackson.annotation.JsonProperty(access = com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY)
     private String contrasena;
     private Boolean estado;
 }
