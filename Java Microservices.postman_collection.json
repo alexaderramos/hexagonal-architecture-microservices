@@ -1,0 +1,1601 @@
+{
+  "info": {
+    "_postman_id": "3c9f4d12-e17b-4134-a3f1-b4e82b26d66e",
+    "name": "Java Microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5024904"
+  },
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Listar Clientes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/clientes",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Listado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:04:29 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\",\n        \"direccion\": \"Av. Siempre Viva 532\",\n        \"edad\": 29,\n        \"estado\": true,\n        \"genero\": \"M\",\n        \"id\": 5,\n        \"identificacion\": \"12345678\",\n        \"nombre\": \"Cristian Ramos\",\n        \"telefono\": \"9898512345\"\n    },\n    {\n        \"clienteId\": \"99da0dc6-588c-4c61-a545-ba41cd7140c6\",\n        \"direccion\": \"Av. Siempre Viva 532\",\n        \"edad\": 29,\n        \"estado\": true,\n        \"genero\": \"M\",\n        \"id\": 7,\n        \"identificacion\": \"12345675\",\n        \"nombre\": \"Cristian A\",\n        \"telefono\": \"9898512345\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Crear Cliente",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nombre\": \"Cristian Ramos\",\r\n    \"genero\": \"M\",\r\n    \"edad\":29,\r\n    \"identificacion\": \"12345678\",\r\n    \"direccion\":\"Av. Siempre Viva 532\",\r\n    \"telefono\":\"9898512345\",\r\n    \"contrasena\": \"12345\",\r\n    \"estado\": true\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/clientes",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "clientes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Creado",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Cristian A\",\r\n    \"genero\": \"M\",\r\n    \"edad\":29,\r\n    \"identificacion\": \"12345675\",\r\n    \"direccion\":\"Av. Siempre Viva 532\",\r\n    \"telefono\":\"9898512345\",\r\n    \"contrasena\": \"12345\",\r\n    \"estado\": true\r\n\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 08:52:48 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"clienteId\": \"99da0dc6-588c-4c61-a545-ba41cd7140c6\",\n    \"direccion\": \"Av. Siempre Viva 532\",\n    \"edad\": 29,\n    \"estado\": true,\n    \"genero\": \"M\",\n    \"id\": 7,\n    \"identificacion\": \"12345675\",\n    \"nombre\": \"Cristian A\",\n    \"telefono\": \"9898512345\"\n}"
+            },
+            {
+              "name": "400 Identificación duplicada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Cristian Ramos\",\r\n    \"genero\": \"M\",\r\n    \"edad\":29,\r\n    \"identificacion\": \"12345678\",\r\n    \"direccion\":\"Av. Siempre Viva 532\",\r\n    \"telefono\":\"9898512345\",\r\n    \"contrasena\": \"12345\",\r\n    \"estado\": true\r\n\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:03:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Ya existe un cliente con la identificación: 12345678\",\n    \"timestamp\": \"2026-06-27T04:03:00.482721\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"direccion\": \"Av. Siempre Viva 532\",\r\n    \"edad\": 29,\r\n    \"estado\": false,\r\n    \"genero\": \"M\",\r\n    \"id\": 7,\r\n    \"identificacion\": \"12345675\",\r\n    \"nombre\": \"Cristian A\",\r\n    \"telefono\": \"9898512345\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/clientes/:clientId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "clientes",
+                ":clientId"
+              ],
+              "variable": [
+                {
+                  "key": "clientId",
+                  "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 No encontrado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Cristian Ramos\",\r\n    \"genero\": \"M\",\r\n    \"edad\":29,\r\n    \"identificacion\": \"12345678\",\r\n    \"direccion\":\"Av. Siempre Viva 532\",\r\n    \"telefono\":\"9898512345\",\r\n    \"contrasena\": \"12345\",\r\n    \"estado\": true\r\n\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clientId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clientId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clientId",
+                      "value": "9da0dc6-588c-4c61-a545-ba41cd7140c6"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:09:25 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Cliente no encontrado con id: 9da0dc6-588c-4c61-a545-ba41cd7140c6\",\n    \"timestamp\": \"2026-06-27T04:09:25.3290355\"\n}"
+            },
+            {
+              "name": "400 Duplicado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"nombre\": \"Cristian Ramos\",\r\n    \"genero\": \"M\",\r\n    \"edad\":29,\r\n    \"identificacion\": \"12345678\",\r\n    \"direccion\":\"Av. Siempre Viva 532\",\r\n    \"telefono\":\"9898512345\",\r\n    \"contrasena\": \"12345\",\r\n    \"estado\": true\r\n\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clientId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clientId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clientId",
+                      "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:10:44 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Ya existe otro cliente con la identificación: 12345678\",\n    \"timestamp\": \"2026-06-27T04:10:44.6657975\"\n}"
+            },
+            {
+              "name": "200 Actualizado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"direccion\": \"Av. Siempre Viva 532\",\r\n    \"edad\": 29,\r\n    \"estado\": false,\r\n    \"genero\": \"M\",\r\n    \"id\": 7,\r\n    \"identificacion\": \"12345675\",\r\n    \"nombre\": \"Cristian A\",\r\n    \"telefono\": \"9898512345\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clientId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clientId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clientId",
+                      "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:12:21 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"clienteId\": \"99da0dc6-588c-4c61-a545-ba41cd7140c6\",\n    \"direccion\": \"Av. Siempre Viva 532\",\n    \"edad\": 29,\n    \"estado\": false,\n    \"genero\": \"M\",\n    \"id\": 7,\n    \"identificacion\": \"12345675\",\n    \"nombre\": \"Cristian A\",\n    \"telefono\": \"9898512345\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Buscar por id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/clientes/:clienteId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "clientes",
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 No encontrado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clienteId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clienteId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clienteId",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 08:14:08 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Cliente no encontrado con id: 1\",\n    \"timestamp\": \"2026-06-27T03:14:08.329897\"\n}"
+            },
+            {
+              "name": "200 Cliente encontrado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clienteId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clienteId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clienteId",
+                      "value": "d22cc869-e825-4ecb-9cec-ead9df825074"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:05:16 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\",\n    \"direccion\": \"Av. Siempre Viva 532\",\n    \"edad\": 29,\n    \"estado\": true,\n    \"genero\": \"M\",\n    \"id\": 5,\n    \"identificacion\": \"12345678\",\n    \"nombre\": \"Cristian Ramos\",\n    \"telefono\": \"9898512345\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Eliminar",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/clientes/:clienteId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "clientes",
+                ":clienteId"
+              ],
+              "variable": [
+                {
+                  "key": "clienteId",
+                  "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 No encontrado",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clienteId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clienteId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clienteId",
+                      "value": "99da0dc6-588c-4c61-a545-ba41cd7140c"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:13:54 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Cliente no encontrado con id: 99da0dc6-588c-4c61-a545-ba41cd7140c\",\n    \"timestamp\": \"2026-06-27T04:13:54.9078807\"\n}"
+            },
+            {
+              "name": "204 Eliminado",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/clientes/:clienteId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "clientes",
+                    ":clienteId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "clienteId",
+                      "value": "99da0dc6-588c-4c61-a545-ba41cd7140c6"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Sat, 27 Jun 2026 09:14:41 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cuentas",
+      "item": [
+        {
+          "name": "Listar Cuentas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/cuentas",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Listar Cuentas",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 03:00:37 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"numeroCuenta\": \"123456789\",\n        \"tipoCuenta\": \"AHORROS\",\n        \"saldoInicial\": 0,\n        \"estado\": true,\n        \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\n    },\n    {\n        \"numeroCuenta\": \"2734746107\",\n        \"tipoCuenta\": \"AHORROS\",\n        \"saldoInicial\": 0,\n        \"estado\": true,\n        \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Obtener cuenta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cuentas",
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "123456789"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Obtener cuenta",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    ":cuentaId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "cuentaId",
+                      "value": "27347461071"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 03:01:56 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"numeroCuenta\": \"2734746107\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"saldoInicial\": 0,\n    \"estado\": true,\n    \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\n}"
+            },
+            {
+              "name": "404 No encontrado",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    ":cuentaId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "cuentaId",
+                      "value": "27347461072"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 03:03:06 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Cuenta no encontrada con número: 27347461072\",\n    \"timestamp\": \"2026-06-27T22:03:06.0887663\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar Cuentas",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"tipoCuenta\": \"AHORROS\",\r\n  \"saldoInicial\": 0,\r\n  \"estado\": true,\r\n  \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/cuentas",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Registrado",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"tipoCuenta\": \"AHORROS\",\r\n  \"saldoInicial\": 0,\r\n  \"estado\": true,\r\n  \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 02:59:48 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"numeroCuenta\": \"2734746107\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"saldoInicial\": 0,\n    \"estado\": true,\n    \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar cuentas",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"estado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "cuentas",
+                ":cuentaId"
+              ],
+              "variable": [
+                {
+                  "key": "cuentaId",
+                  "value": "123456789"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "404 No encontrado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"tipoCuenta\": \"AHORROS\",\r\n  \"saldoInicial\": 0,\r\n  \"estado\": false,\r\n  \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    ":cuentaId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "cuentaId",
+                      "value": "27347461071"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:18:07 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Cuenta no encontrada con número: 27347461071\",\n    \"timestamp\": \"2026-06-27T23:18:07.6013351\"\n}"
+            },
+            {
+              "name": "200 Actualizado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"tipoCuenta\": \"AHORROS\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    ":cuentaId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "cuentaId",
+                      "value": "2734746107"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:40:32 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"numeroCuenta\": \"2734746107\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"saldoInicial\": 0,\n    \"estado\": false,\n    \"clienteId\": \"d22cc869-e825-4ecb-9cec-ead9df825074\"\n}"
+            },
+            {
+              "name": "400 Cuenta con saldo",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"estado\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/cuentas/:cuentaId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    ":cuentaId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "cuentaId",
+                      "value": "123456789"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 05:19:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"No se puede desactivar la cuenta porque tiene un saldo diferente de cero.\",\n    \"timestamp\": \"2026-06-28T00:19:10.4890867\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Movimientos",
+      "item": [
+        {
+          "name": "Listar Movimientos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/movimientos",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Listar",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:52:11 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"fecha\": \"2026-06-27T23:51:06.321623\",\n        \"tipoMovimiento\": \"DEPOSITO\",\n        \"valor\": 10,\n        \"saldo\": 10,\n        \"numeroCuenta\": \"123456789\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Registrar Movimiento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"valor\": 200,\r\n  \"numeroCuenta\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/movimientos",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Depositar",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"valor\": 10,\r\n  \"numeroCuenta\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:53:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 2,\n    \"fecha\": \"2026-06-27T23:53:03.3885943\",\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 10,\n    \"saldo\": 20,\n    \"numeroCuenta\": \"123456789\"\n}"
+            },
+            {
+              "name": "200 Retiro",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"valor\": -5,\r\n  \"numeroCuenta\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:55:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 3,\n    \"fecha\": \"2026-06-27T23:55:03.4881524\",\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -5,\n    \"saldo\": 15,\n    \"numeroCuenta\": \"123456789\"\n}"
+            },
+            {
+              "name": "400 Valor 0",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"valor\": 0,\r\n  \"numeroCuenta\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:57:08 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"El valor del movimiento no puede ser cero.\",\n    \"timestamp\": \"2026-06-27T23:57:08.5502862\"\n}"
+            },
+            {
+              "name": "400 Sin Saldo",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"valor\": -100,\r\n  \"numeroCuenta\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 04:59:31 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Saldo no disponible\",\n    \"timestamp\": \"2026-06-27T23:59:31.9753438\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Actualizar movimiento",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"estado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/movimientos/:movimientoId",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "movimientos",
+                ":movimientoId"
+              ],
+              "variable": [
+                {
+                  "key": "movimientoId",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Cambio estado",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"estado\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/movimientos/:movimientoId",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "movimientos",
+                    ":movimientoId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "movimientoId",
+                      "value": "4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 05:46:03 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 4,\n    \"fecha\": \"2026-06-28T00:45:08.223695\",\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 200,\n    \"saldo\": 215,\n    \"numeroCuenta\": \"123456789\",\n    \"estado\": false\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "Listar reporte",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/reportes?fecha-rango=2026-06-27,2026-06-28&cliente=d22cc869-e825-4ecb-9cec-ead9df825074",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "reportes"
+              ],
+              "query": [
+                {
+                  "key": "fecha-rango",
+                  "value": "2026-06-27,2026-06-28"
+                },
+                {
+                  "key": "cliente",
+                  "value": "d22cc869-e825-4ecb-9cec-ead9df825074"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 Listar reporte",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/reportes?fecha-rango=2026-06-27,2026-06-28&cliente=d22cc869-e825-4ecb-9cec-ead9df825074",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "reportes"
+                  ],
+                  "query": [
+                    {
+                      "key": "fecha-rango",
+                      "value": "2026-06-27,2026-06-28"
+                    },
+                    {
+                      "key": "cliente",
+                      "value": "d22cc869-e825-4ecb-9cec-ead9df825074"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 28 Jun 2026 06:04:43 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"Cliente\": \"Cristian Ramos\",\n        \"Estado\": true,\n        \"Fecha\": \"27/06/2026\",\n        \"Movimiento\": 10,\n        \"Numero Cuenta\": \"123456789\",\n        \"Saldo Disponible\": 10,\n        \"Saldo Inicial\": 0,\n        \"Tipo\": \"AHORROS\"\n    },\n    {\n        \"Cliente\": \"Cristian Ramos\",\n        \"Estado\": true,\n        \"Fecha\": \"27/06/2026\",\n        \"Movimiento\": 10,\n        \"Numero Cuenta\": \"123456789\",\n        \"Saldo Disponible\": 20,\n        \"Saldo Inicial\": 0,\n        \"Tipo\": \"AHORROS\"\n    },\n    {\n        \"Cliente\": \"Cristian Ramos\",\n        \"Estado\": true,\n        \"Fecha\": \"27/06/2026\",\n        \"Movimiento\": -5,\n        \"Numero Cuenta\": \"123456789\",\n        \"Saldo Disponible\": 15,\n        \"Saldo Inicial\": 0,\n        \"Tipo\": \"AHORROS\"\n    },\n    {\n        \"Cliente\": \"Cristian Ramos\",\n        \"Estado\": true,\n        \"Fecha\": \"28/06/2026\",\n        \"Movimiento\": 200,\n        \"Numero Cuenta\": \"123456789\",\n        \"Saldo Disponible\": 215,\n        \"Saldo Inicial\": 0,\n        \"Tipo\": \"AHORROS\"\n    },\n    {\n        \"Cliente\": \"Cristian Ramos\",\n        \"Estado\": true,\n        \"Fecha\": \"28/06/2026\",\n        \"Movimiento\": -200,\n        \"Numero Cuenta\": \"123456789\",\n        \"Saldo Disponible\": 15,\n        \"Saldo Inicial\": 0,\n        \"Tipo\": \"AHORROS\"\n    }\n]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
