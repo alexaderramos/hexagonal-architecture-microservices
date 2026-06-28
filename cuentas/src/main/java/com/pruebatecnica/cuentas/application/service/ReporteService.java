@@ -47,7 +47,7 @@ public class ReporteService implements ReporteUseCase {
                         .fecha(mov.getFecha().toLocalDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                         .numeroCuenta(cuenta.getNumeroCuenta())
                         .tipo(cuenta.getTipoCuenta().name())
-                        .saldoInicial(cuenta.getSaldoInicial())
+                        .saldoInicial(mov.getSaldoInicial())
                         .estado(cuenta.getEstado())
                         .movimiento(mov.getValor())
                         .saldoDisponible(mov.getSaldo())

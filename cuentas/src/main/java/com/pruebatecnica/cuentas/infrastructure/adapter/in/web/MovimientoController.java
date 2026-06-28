@@ -34,7 +34,8 @@ public class MovimientoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Movimiento> updateMovimiento(@PathVariable Long id, @Valid @RequestBody Movimiento movimiento) {
+    public ResponseEntity<Movimiento> updateMovimiento(@PathVariable Long id,
+            @Valid @RequestBody Movimiento movimiento) {
         return ResponseEntity.ok(movimientoUseCase.updateMovimiento(id, movimiento));
     }
 }

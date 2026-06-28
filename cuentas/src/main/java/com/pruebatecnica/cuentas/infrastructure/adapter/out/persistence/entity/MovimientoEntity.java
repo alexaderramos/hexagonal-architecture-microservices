@@ -27,12 +27,26 @@ public class MovimientoEntity {
     @Column(nullable = false)
     private TipoMovimiento tipoMovimiento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private BigDecimal valor;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private BigDecimal saldo;
+
+    @Column(nullable = false, updatable = false)
+    private BigDecimal saldoInicial;
 
     @Column(nullable = false)
     private String numeroCuenta;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Boolean estado = true;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.estado == null) {
+            this.estado = true;
+        }
+    }
 }

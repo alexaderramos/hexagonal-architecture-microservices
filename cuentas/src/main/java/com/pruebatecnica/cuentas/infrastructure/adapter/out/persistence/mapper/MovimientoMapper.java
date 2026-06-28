@@ -17,7 +17,9 @@ public class MovimientoMapper {
                 .tipoMovimiento(entity.getTipoMovimiento())
                 .valor(entity.getValor())
                 .saldo(entity.getSaldo())
+                .saldoInicial(entity.getSaldoInicial())
                 .numeroCuenta(entity.getNumeroCuenta())
+                .estado(entity.getEstado())
                 .build();
     }
 
@@ -30,7 +32,9 @@ public class MovimientoMapper {
                 .tipoMovimiento(domain.getTipoMovimiento())
                 .valor(domain.getValor())
                 .saldo(domain.getSaldo())
+                .saldoInicial(domain.getSaldoInicial())
                 .numeroCuenta(domain.getNumeroCuenta())
+                .estado(domain.getEstado())
                 .build();
     }
 

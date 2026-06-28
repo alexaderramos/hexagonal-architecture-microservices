@@ -46,12 +46,15 @@ public class MovimientoService implements MovimientoUseCase {
             throw new BusinessException("Saldo no disponible");
         }
 
+        movimiento.setSaldoInicial(saldoDisponible);
         movimiento.setSaldo(nuevoSaldo);
         if (movimiento.getFecha() == null) {
             movimiento.setFecha(LocalDateTime.now());
         }
         movimiento.setTipoMovimiento(
                 movimiento.getValor().compareTo(BigDecimal.ZERO) > 0 ? TipoMovimiento.DEPOSITO : TipoMovimiento.RETIRO);
+
+        movimiento.setEstado(true);
 
         return movimientoRepositoryPort.save(movimiento);
     }
@@ -63,6 +66,21 @@ public class MovimientoService implements MovimientoUseCase {
 
         if (movimiento.getFecha() != null) {
             existing.setFecha(movimiento.getFecha());
+        }
+
+        // Verificacion de estado de movimientos
+        if (movimiento.getEstado() != null && !movimiento.getEstado() && existing.getEstado().booleanValue()) {
+            existing.setEstado(false);
+
+            // Se crea un registro reverso para mantener la integridad de datos
+            Movimiento reverso = Movimiento.builder()
+                    .fecha(LocalDateTime.now())
+                    .valor(existing.getValor().negate())
+                    .numeroCuenta(existing.getNumeroCuenta())
+                    .estado(true)
+                    .build();
+
+            createMovimiento(reverso);
         }
 
         return movimientoRepositoryPort.save(existing);

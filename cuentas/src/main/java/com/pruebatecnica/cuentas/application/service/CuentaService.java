@@ -38,6 +38,21 @@ public class CuentaService implements CuentaUseCase {
 
         existingCuenta.setTipoCuenta(cuenta.getTipoCuenta());
 
+        if (cuenta.getEstado() != null && !cuenta.getEstado() && existingCuenta.getEstado().booleanValue()) {
+            BigDecimal saldoActual = movimientoRepositoryPort.findFirstByNumeroCuentaOrderByFechaDesc(numeroCuenta)
+                    .map(Movimiento::getSaldo)
+                    .orElse(existingCuenta.getSaldoInicial());
+
+            if (saldoActual.compareTo(BigDecimal.ZERO) != 0) {
+                throw new BusinessException(
+                        "No se puede desactivar la cuenta porque tiene un saldo diferente de cero.");
+            }
+        }
+
+        if (cuenta.getEstado() != null) {
+            existingCuenta.setEstado(cuenta.getEstado());
+        }
+
         return cuentaRepositoryPort.save(existingCuenta);
     }
 
@@ -52,22 +67,5 @@ public class CuentaService implements CuentaUseCase {
     @Transactional(readOnly = true)
     public List<Cuenta> getAllCuentas() {
         return cuentaRepositoryPort.findAll();
-    }
-
-    @Override
-    @Transactional
-    public void deleteCuenta(String numeroCuenta) {
-        Cuenta cuenta = getCuentaByNumeroCuenta(numeroCuenta);
-
-        // Validar que la cuenta no tenga saldo
-        BigDecimal saldoActual = movimientoRepositoryPort.findFirstByNumeroCuentaOrderByFechaDesc(numeroCuenta)
-                .map(Movimiento::getSaldo)
-                .orElse(cuenta.getSaldoInicial());
-
-        if (saldoActual.compareTo(BigDecimal.ZERO) != 0) {
-            throw new BusinessException("No se puede eliminar la cuenta porque tiene un saldo diferente de cero.");
-        }
-
-        cuentaRepositoryPort.deleteByNumeroCuenta(numeroCuenta);
     }
 }

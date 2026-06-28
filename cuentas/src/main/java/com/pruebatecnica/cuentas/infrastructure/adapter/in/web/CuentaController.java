@@ -38,9 +38,4 @@ public class CuentaController {
         return ResponseEntity.ok(cuentaUseCase.updateCuenta(numeroCuenta, cuenta));
     }
 
-    @DeleteMapping("/{numeroCuenta}")
-    public ResponseEntity<Void> deleteCuenta(@PathVariable String numeroCuenta) {
-        cuentaUseCase.deleteCuenta(numeroCuenta);
-        return ResponseEntity.noContent().build();
-    }
 }
