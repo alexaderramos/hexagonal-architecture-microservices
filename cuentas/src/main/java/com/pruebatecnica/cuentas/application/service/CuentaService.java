@@ -2,13 +2,17 @@ package com.pruebatecnica.cuentas.application.service;
 
 import com.pruebatecnica.cuentas.application.port.in.CuentaUseCase;
 import com.pruebatecnica.cuentas.application.port.out.CuentaRepositoryPort;
+import com.pruebatecnica.cuentas.application.port.out.MovimientoRepositoryPort;
 import com.pruebatecnica.cuentas.domain.exception.BusinessException;
 import com.pruebatecnica.cuentas.domain.exception.ResourceNotFoundException;
 import com.pruebatecnica.cuentas.domain.model.Cuenta;
+import com.pruebatecnica.cuentas.domain.model.Movimiento;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.List;
 public class CuentaService implements CuentaUseCase {
 
     private final CuentaRepositoryPort cuentaRepositoryPort;
+    private final MovimientoRepositoryPort movimientoRepositoryPort;
 
     @Override
     @Transactional
@@ -30,10 +35,9 @@ public class CuentaService implements CuentaUseCase {
     @Transactional
     public Cuenta updateCuenta(String numeroCuenta, Cuenta cuenta) {
         Cuenta existingCuenta = getCuentaByNumeroCuenta(numeroCuenta);
-        
+
         existingCuenta.setTipoCuenta(cuenta.getTipoCuenta());
-        existingCuenta.setEstado(cuenta.getEstado());
-        
+
         return cuentaRepositoryPort.save(existingCuenta);
     }
 
@@ -53,7 +57,17 @@ public class CuentaService implements CuentaUseCase {
     @Override
     @Transactional
     public void deleteCuenta(String numeroCuenta) {
-        getCuentaByNumeroCuenta(numeroCuenta); // Verify exists
+        Cuenta cuenta = getCuentaByNumeroCuenta(numeroCuenta);
+
+        // Validar que la cuenta no tenga saldo
+        BigDecimal saldoActual = movimientoRepositoryPort.findFirstByNumeroCuentaOrderByFechaDesc(numeroCuenta)
+                .map(Movimiento::getSaldo)
+                .orElse(cuenta.getSaldoInicial());
+
+        if (saldoActual.compareTo(BigDecimal.ZERO) != 0) {
+            throw new BusinessException("No se puede eliminar la cuenta porque tiene un saldo diferente de cero.");
+        }
+
         cuentaRepositoryPort.deleteByNumeroCuenta(numeroCuenta);
     }
 }
