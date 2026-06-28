@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: secret_root
+      MYSQL_USER: micro_user
+      MYSQL_PASSWORD: secret_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  clientes:
+    build:
+      context: ./clientes
+      dockerfile: Dockerfile
+    container_name: micro-clientes
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql-db
+      MYSQL_PORT: 3306
+      MYSQL_DB: clientes_db
+      MYSQL_USER: micro_user
+      MYSQL_PASSWORD: secret_password
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+
+  cuentas:
+    build:
+      context: ./cuentas
+      dockerfile: Dockerfile
+    container_name: micro-cuentas
+    ports:
+      - "8081:8081"
+    environment:
+      MYSQL_HOST: mysql-db
+      MYSQL_PORT: 3306
+      MYSQL_DB: cuentas_db
+      MYSQL_USER: micro_user
+      MYSQL_PASSWORD: secret_password
+      CLIENTES_SERVICE_URL: http://clientes:8080/api
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      clientes:
+        condition: service_started
+
+volumes:
+  mysql-data:

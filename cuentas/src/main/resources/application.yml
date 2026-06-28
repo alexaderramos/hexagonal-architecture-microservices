@@ -1,5 +1,7 @@
 server:
   port: 8081
+  servlet:
+    context-path: /api
 
 spring:
   application:
@@ -21,4 +23,4 @@ spring:
 # Feign de clientes
 clientes:
   service:
-    url: ${CLIENTES_SERVICE_URL:http://localhost:8080}
+    url: ${CLIENTES_SERVICE_URL:http://localhost:8080/api}
