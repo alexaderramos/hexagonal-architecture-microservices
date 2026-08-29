@@ -8,6 +8,7 @@ import com.pruebatecnica.cuentas.domain.exception.ResourceNotFoundException;
 import com.pruebatecnica.cuentas.domain.model.Cuenta;
 import com.pruebatecnica.cuentas.domain.model.Movimiento;
 import com.pruebatecnica.cuentas.domain.model.TipoMovimiento;
+import com.pruebatecnica.cuentas.application.port.out.MovimientoEventPublisherPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ public class MovimientoService implements MovimientoUseCase {
 
     private final MovimientoRepositoryPort movimientoRepositoryPort;
     private final CuentaRepositoryPort cuentaRepositoryPort;
+    private final MovimientoEventPublisherPort movimientoEventPublisherPort;
 
     @Override
     @Transactional
@@ -56,7 +58,12 @@ public class MovimientoService implements MovimientoUseCase {
 
         movimiento.setEstado(true);
 
-        return movimientoRepositoryPort.save(movimiento);
+        Movimiento savedMovimiento = movimientoRepositoryPort.save(movimiento);
+        
+        // Publicar evento en Kafka
+        movimientoEventPublisherPort.publishMovimientoCreadoEvent(savedMovimiento, cuenta.getClienteId());
+
+        return savedMovimiento;
     }
 
     @Override
