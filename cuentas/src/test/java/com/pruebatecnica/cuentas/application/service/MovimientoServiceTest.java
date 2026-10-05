@@ -27,6 +27,9 @@ class MovimientoServiceTest {
     @Mock
     private CuentaRepositoryPort cuentaRepositoryPort;
 
+    @Mock
+    private com.pruebatecnica.cuentas.application.port.out.MovimientoEventPublisherPort movimientoEventPublisherPort;
+
     @InjectMocks
     private MovimientoService movimientoService;
 

@@ -2,32 +2,27 @@ package com.pruebatecnica.cuentas.infrastructure.adapter.out.rest;
 
 import com.pruebatecnica.cuentas.application.port.out.ClienteServicePort;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClient;
-
-import java.util.concurrent.CompletableFuture;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Component
 public class ClienteExternalAdapter implements ClienteServicePort {
 
-    private final RestClient restClient;
+    private final WebClient webClient;
 
     public ClienteExternalAdapter(@Value("${clientes.service.url:http://localhost:8080}") String clientesServiceUrl) {
-        this.restClient = RestClient.builder().baseUrl(clientesServiceUrl).build();
+        this.webClient = WebClient.builder().baseUrl(clientesServiceUrl).build();
     }
 
     @Override
-    @Async
-    public CompletableFuture<String> getClienteNombreAsync(String clienteId) {
-        try {
-            ClienteDto cliente = restClient.get()
-                    .uri("/clientes/{clienteId}", clienteId)
-                    .retrieve()
-                    .body(ClienteDto.class);
-            return CompletableFuture.completedFuture(cliente != null ? cliente.getNombre() : "Cliente Desconocido");
-        } catch (Exception e) {
-            return CompletableFuture.completedFuture("Cliente Desconocido (" + clienteId + ")");
-        }
+    public Mono<String> getClienteNombreAsync(String clienteId) {
+        return webClient.get()
+                .uri("/clientes/{clienteId}", clienteId)
+                .retrieve()
+                .bodyToMono(ClienteDto.class)
+                .map(ClienteDto::getNombre)
+                .defaultIfEmpty("Cliente Desconocido")
+                .onErrorReturn("Cliente Desconocido (" + clienteId + ")");
     }
 }
